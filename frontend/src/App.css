@@ -1,0 +1,811 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #0f1013;
+    color: #e6e6e6;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+button,
+select,
+textarea {
+    font-family: inherit;
+}
+
+.app {
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(124, 58, 237, 0.08),
+            transparent 30%
+        ),
+        #0f1013;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 28px;
+
+    border-bottom: 1px solid #25262b;
+
+    background: #111216;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.brand-icon {
+    color: #a855f7;
+    font-size: 23px;
+}
+
+.brand-ai {
+    color: #a855f7;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-button,
+.nav-button {
+    border: 1px solid #292b31;
+
+    background: #17181d;
+
+    color: #aaa;
+
+    border-radius: 7px;
+
+    padding: 8px 12px;
+
+    cursor: pointer;
+}
+
+.icon-button:hover,
+.nav-button:hover {
+    background: #202127;
+    color: white;
+}
+
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.toolbar {
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 18px;
+
+    background: #15161a;
+
+    border-bottom: 1px solid #25262b;
+}
+
+.language-select select {
+    background: #1d1e23;
+
+    color: #ddd;
+
+    border: 1px solid #303138;
+
+    border-radius: 6px;
+
+    padding: 8px 30px 8px 12px;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+.toolbar-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    border: 1px solid #303138;
+
+    border-radius: 6px;
+
+    padding: 8px 15px;
+
+    font-size: 13px;
+
+    color: #d8d8d8;
+
+    background: #1b1c21;
+
+    cursor: pointer;
+
+    transition: 0.15s ease;
+}
+
+.btn:hover {
+    background: #26272e;
+    transform: translateY(-1px);
+}
+
+.run-btn:hover {
+    border-color: #22c55e;
+    color: #4ade80;
+}
+
+.fix-btn:hover {
+    border-color: #a855f7;
+    color: #c084fc;
+}
+
+.review-btn {
+    background: #7c3aed;
+    border-color: #7c3aed;
+
+    color: white;
+}
+
+.review-btn:hover {
+    background: #8b5cf6;
+}
+
+.review-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.clear-btn:hover {
+    border-color: #ef4444;
+    color: #f87171;
+}
+
+
+/* =========================
+   WORKSPACE
+========================= */
+
+.workspace {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 1px;
+
+    height: calc(100vh - 64px - 58px - 150px);
+
+    min-height: 450px;
+
+    background: #292a2f;
+}
+
+
+/* =========================
+   PANELS
+========================= */
+
+.panel {
+    background: #151619;
+
+    min-width: 0;
+
+    overflow: hidden;
+}
+
+.panel-header {
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 14px;
+
+    border-bottom: 1px solid #25262b;
+
+    background: #17181c;
+}
+
+.panel-title {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #cfcfcf;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+}
+
+.ai-dot {
+    color: #a855f7;
+
+    font-size: 16px;
+}
+
+.file-name {
+    color: #666;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   EDITOR
+========================= */
+
+.editor {
+    display: flex;
+
+    height: calc(100% - 42px);
+
+    overflow: auto;
+
+    background: #101113;
+}
+
+.line-numbers {
+    width: 45px;
+
+    padding-top: 14px;
+
+    text-align: right;
+
+    padding-right: 12px;
+
+    color: #4b4d54;
+
+    font-family: "Fira Code", monospace;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+
+    user-select: none;
+
+    border-right: 1px solid #202126;
+}
+
+.code-input {
+    flex: 1;
+
+    height: 100%;
+
+    min-width: 0;
+
+    resize: none;
+
+    outline: none;
+
+    border: none;
+
+    background: transparent;
+
+    color: #e6e6e6;
+
+    padding: 14px 16px;
+
+    font-family: "Fira Code", "Fira Mono", monospace;
+
+    font-size: 14px;
+
+    line-height: 1.65;
+
+    tab-size: 4;
+
+    white-space: pre;
+
+    overflow: auto;
+}
+
+.code-input::selection {
+    background: #4c1d95;
+}
+
+
+/* =========================
+   REVIEW
+========================= */
+
+.review-content {
+    height: calc(100% - 42px);
+
+    padding: 20px;
+
+    overflow-y: auto;
+
+    color: #d4d4d4;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+.review-content h1,
+.review-content h2,
+.review-content h3 {
+    color: #fff;
+}
+
+.review-content code {
+    background: #202127;
+
+    border-radius: 4px;
+
+    padding: 2px 5px;
+}
+
+.review-content pre {
+    background: #0b0c0e !important;
+
+    border: 1px solid #292a30;
+
+    border-radius: 7px;
+
+    padding: 14px;
+
+    overflow-x: auto;
+}
+
+.copy-button {
+    background: transparent;
+
+    color: #777;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-size: 11px;
+}
+
+.copy-button:hover {
+    color: #bbb;
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-state {
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    color: #666;
+}
+
+.empty-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #1d1628;
+
+    color: #a855f7;
+
+    font-size: 22px;
+
+    margin-bottom: 14px;
+}
+
+.empty-state h3 {
+    margin: 0 0 8px;
+
+    color: #bbb;
+
+    font-size: 15px;
+}
+
+.empty-state p {
+    max-width: 280px;
+
+    margin: 0;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-state {
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #777;
+}
+
+.loader {
+    width: 25px;
+    height: 25px;
+
+    border: 3px solid #292a30;
+
+    border-top-color: #a855f7;
+
+    border-radius: 50%;
+
+    animation: spin 0.8s linear infinite;
+
+    margin-bottom: 12px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================
+   CONSOLE
+========================= */
+
+.console {
+    height: 150px;
+
+    background: #0c0d0f;
+
+    border-top: 1px solid #292a2f;
+}
+
+.console-header {
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 18px;
+
+    border-bottom: 1px solid #202126;
+
+    color: #999;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.console-header button {
+    border: none;
+
+    background: transparent;
+
+    color: #666;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+.console-header button:hover {
+    color: #aaa;
+}
+
+.console-output {
+    padding: 12px 18px;
+
+    color: #9ca3af;
+
+    font-family: "Fira Code", monospace;
+
+    font-size: 12px;
+
+    overflow: auto;
+
+    height: calc(100% - 38px);
+}
+
+.console-output pre {
+    margin: 0;
+
+    white-space: pre-wrap;
+
+    color: #d1d5db;
+}
+
+.console-placeholder {
+    color: #3f4148;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .workspace {
+        grid-template-columns: 1fr;
+
+        height: auto;
+    }
+
+    .code-panel,
+    .review-panel {
+        min-height: 450px;
+    }
+
+    .toolbar {
+        flex-wrap: wrap;
+
+        height: auto;
+
+        padding: 10px;
+
+        gap: 10px;
+    }
+
+    .toolbar-actions {
+        flex-wrap: wrap;
+    }
+}
+/* =========================
+   LIGHT MODE
+========================= */
+
+.app.light-mode {
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(124, 58, 237, 0.06),
+            transparent 30%
+        ),
+        #f5f6f8;
+
+    color: #202124;
+}
+
+.light-mode .navbar {
+    background: #ffffff;
+    border-bottom-color: #e1e3e7;
+}
+
+.light-mode .brand {
+    color: #202124;
+}
+
+.light-mode .icon-button,
+.light-mode .nav-button {
+    background: #f5f6f8;
+    border-color: #d9dce1;
+    color: #555;
+}
+
+.light-mode .icon-button:hover,
+.light-mode .nav-button:hover {
+    background: #e9ebef;
+    color: #222;
+}
+
+
+/* TOOLBAR */
+
+.light-mode .toolbar {
+    background: #ffffff;
+    border-bottom-color: #e1e3e7;
+}
+
+.light-mode .language-select select {
+    background: #f7f8fa;
+    color: #333;
+    border-color: #d9dce1;
+}
+
+
+/* BUTTONS */
+
+.light-mode .btn {
+    background: #f7f8fa;
+    color: #444;
+    border-color: #d9dce1;
+}
+
+.light-mode .btn:hover {
+    background: #e9ebef;
+}
+
+.light-mode .run-btn:hover {
+    border-color: #16a34a;
+    color: #15803d;
+}
+
+.light-mode .fix-btn:hover {
+    border-color: #9333ea;
+    color: #7e22ce;
+}
+
+.light-mode .review-btn {
+    background: #7c3aed;
+    border-color: #7c3aed;
+    color: white;
+}
+
+
+/* WORKSPACE */
+
+.light-mode .workspace {
+    background: #dfe1e5;
+}
+
+.light-mode .panel {
+    background: #ffffff;
+}
+
+.light-mode .panel-header {
+    background: #fafafa;
+    border-bottom-color: #e1e3e7;
+}
+
+.light-mode .panel-title {
+    color: #333;
+}
+
+.light-mode .file-name {
+    color: #888;
+}
+
+
+/* EDITOR */
+
+.light-mode .editor {
+    background: #ffffff;
+}
+
+.light-mode .line-numbers {
+    color: #9aa0a6;
+    border-right-color: #e5e7eb;
+}
+
+.light-mode .code-input {
+    color: #202124;
+}
+
+.light-mode .code-input::selection {
+    background: #ddd6fe;
+}
+
+
+/* REVIEW */
+
+.light-mode .review-content {
+    color: #444;
+}
+
+.light-mode .review-content h1,
+.light-mode .review-content h2,
+.light-mode .review-content h3 {
+    color: #222;
+}
+
+.light-mode .review-content code {
+    background: #f0f0f3;
+}
+
+.light-mode .review-content pre {
+    background: #f4f4f5 !important;
+    border-color: #dedfe3;
+}
+
+
+/* EMPTY STATE */
+
+.light-mode .empty-state {
+    color: #888;
+}
+
+.light-mode .empty-state h3 {
+    color: #555;
+}
+
+.light-mode .empty-icon {
+    background: #f1eafa;
+}
+
+
+/* LOADING */
+
+.light-mode .loading-state {
+    color: #888;
+}
+
+.light-mode .loader {
+    border-color: #e5e7eb;
+    border-top-color: #a855f7;
+}
+
+
+/* CONSOLE */
+
+.light-mode .console {
+    background: #f8f9fa;
+    border-top-color: #dfe1e5;
+}
+
+.light-mode .console-header {
+    border-bottom-color: #e5e7eb;
+    color: #555;
+}
+
+.light-mode .console-header button {
+    color: #888;
+}
+
+.light-mode .console-header button:hover {
+    color: #444;
+}
+
+.light-mode .console-output {
+    color: #555;
+}
+
+.light-mode .console-output pre {
+    color: #333;
+}
+
+.light-mode .console-placeholder {
+    color: #a0a4aa;
+}
